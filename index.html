@@ -9,48 +9,54 @@
   <body>
     <div class="app">
       <!-- SIDEBAR -->
-      <aside class="sidebar">
-        <h2 class="logo">Lumina</h2>
+      <aside class="sidebar" id="sidebar">
+        <div class="sidebar-top">
+          <h2 class="logo">Lumina</h2>
+          <button class="toggle-btn" id="toggleBtn" aria-label="Recolher menu">
+            ☰
+          </button>
+        </div>
 
-        <div class="profile">
-          <div class="avatar">
-            <img src="assets/person-circle.svg" alt="perfil" />
-            <div class="overlay">
-              <img src="assets/settings.svg" alt="settings" />
+        <div class="sidebar-inner">
+          <div class="profile" id="profileBtn">
+            <div class="avatar">
+              <img src="assets/person-circle.svg" alt="perfil" />
+            </div>
+            <span id="profileName">Perfil</span>
+          </div>
+
+          <button class="new-chat" onclick="resetChat()">+ Novo chat</button>
+
+          <div class="history">
+            <div
+              class="history-header"
+              onclick="toggleSection('historyList', 'historyChevron')"
+            >
+              <span>Chats</span>
+              <span class="chevron open" id="historyChevron">▾</span>
+            </div>
+            <div class="history-list" id="historyList">
+              <p>Funções</p>
+              <p>Redação ENEM</p>
+              <p>Física</p>
             </div>
           </div>
-          <span>Perfil</span>
-        </div>
 
-        <button class="new-chat">+ Novo chat</button>
-
-        <div class="history">
-          <p class="subtitle">
-            Chats <img src="assets/chevron-down.svg" alt="" />
-          </p>
-          <div class="list">
-            <p>Funções</p>
-            <p>Redação ENEM</p>
-            <p>Física</p>
+          <div class="exercises">
+            <p class="subtitle">Exercícios</p>
           </div>
-        </div>
-
-        <div class="exercises">
-          <p class="subtitle">Exercícios</p>
         </div>
       </aside>
 
       <!-- CHAT -->
       <main class="chat">
-        <div class="messages">
+        <div class="messages" id="messages">
           <div class="msg bot">
             <p>Oi! Vamos estudar para o vestibular hoje?</p>
           </div>
-
           <div class="msg user">
             <p>Quero revisar função do 2º grau</p>
           </div>
-
           <div class="msg bot">
             <p>Boa escolha. Quer começar com teoria ou exercícios?</p>
           </div>
@@ -59,17 +65,38 @@
         <div class="input-area">
           <input
             type="text"
+            id="chatInput"
             placeholder="Pergunte qualquer coisa sobre o vestibular..."
+            onkeydown="if (event.key === 'Enter') sendMsg();"
           />
-          <button>
+          <button onclick="sendMsg()">
             <img src="assets/arrow-big-up.svg" alt="send" title="enviar" />
           </button>
-
           <button>
-            <img src="assets/plus.svg" alt="send" title="anexos" />
+            <img src="assets/plus.svg" alt="anexo" title="anexos" />
           </button>
         </div>
       </main>
     </div>
+
+    <!-- MODAL DE PERFIL -->
+    <div class="modal-overlay" id="modalOverlay">
+      <div class="profile-modal">
+        <button class="close-modal" id="closeModal">✕</button>
+
+        <h2>Configurações do Perfil</h2>
+
+        <div class="profile-preview">
+          <img src="assets/person-circle.svg" alt="" />
+        </div>
+
+        <input type="text" id="inputNome" placeholder="Seu nome" />
+        <input type="email" id="inputEmail" placeholder="Seu email" />
+
+        <button class="save-profile" id="saveProfile">Salvar</button>
+      </div>
+    </div>
+
+    <script src="index.js"></script>
   </body>
 </html>
