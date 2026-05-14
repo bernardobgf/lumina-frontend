@@ -2,7 +2,7 @@
 <html lang="pt-BR">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="assets/brain-cog.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Lumina</title>
     <link rel="stylesheet" href="style.css" />
   </head>
@@ -13,25 +13,49 @@
         <div class="sidebar-top">
           <h2 class="logo">Lumina</h2>
           <button class="toggle-btn" id="toggleBtn" aria-label="Recolher menu">
-            ☰
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="20"
+              height="20"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <line x1="3" y1="6" x2="21" y2="6" />
+              <line x1="3" y1="12" x2="21" y2="12" />
+              <line x1="3" y1="18" x2="21" y2="18" />
+            </svg>
           </button>
         </div>
 
         <div class="sidebar-inner">
           <div class="profile" id="profileBtn">
             <div class="avatar">
-              <img src="assets/person-circle.svg" alt="perfil" />
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="45"
+                height="45"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.5"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <circle cx="12" cy="8" r="4" />
+                <path d="M4 20c0-4 3.6-7 8-7s8 3 8 7" />
+              </svg>
             </div>
             <span id="profileName">Perfil</span>
           </div>
 
-          <button class="new-chat" onclick="resetChat()">+ Novo chat</button>
+          <button class="new-chat" id="newChatBtn">+ Novo chat</button>
 
           <div class="history">
-            <div
-              class="history-header"
-              onclick="toggleSection('historyList', 'historyChevron')"
-            >
+            <div class="history-header" id="historyHeader">
               <span>Chats</span>
               <span class="chevron open" id="historyChevron">▾</span>
             </div>
@@ -67,13 +91,38 @@
             type="text"
             id="chatInput"
             placeholder="Pergunte qualquer coisa sobre o vestibular..."
-            onkeydown="if (event.key === 'Enter') sendMsg();"
           />
-          <button onclick="sendMsg()">
-            <img src="assets/arrow-big-up.svg" alt="send" title="enviar" />
+          <button id="sendBtn">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="18"
+              height="18"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2.5"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <line x1="12" y1="19" x2="12" y2="5" />
+              <polyline points="5 12 12 5 19 12" />
+            </svg>
           </button>
-          <button>
-            <img src="assets/plus.svg" alt="anexo" title="anexos" />
+          <button id="attachBtn">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="18"
+              height="18"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2.5"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <line x1="12" y1="5" x2="12" y2="19" />
+              <line x1="5" y1="12" x2="19" y2="12" />
+            </svg>
           </button>
         </div>
       </main>
@@ -87,7 +136,20 @@
         <h2>Configurações do Perfil</h2>
 
         <div class="profile-preview">
-          <img src="assets/person-circle.svg" alt="" />
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="90"
+            height="90"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="#a78bfa"
+            stroke-width="1.5"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <circle cx="12" cy="8" r="4" />
+            <path d="M4 20c0-4 3.6-7 8-7s8 3 8 7" />
+          </svg>
         </div>
 
         <input type="text" id="inputNome" placeholder="Seu nome" />

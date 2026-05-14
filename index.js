@@ -13,12 +13,15 @@ toggleBtn.addEventListener("click", () => {
 // HISTORY — MENU RETRÁTIL
 // ======================
 
-function toggleSection(listId, chevronId) {
-  const list = document.getElementById(listId);
-  const chevron = document.getElementById(chevronId);
-  list.classList.toggle("closed");
-  chevron.classList.toggle("open");
-}
+const historyHeader = document.getElementById("historyHeader");
+const historyList = document.getElementById("historyList");
+const historyChevron = document.getElementById("historyChevron");
+
+historyHeader.addEventListener("click", () => {
+  const isClosed = historyList.classList.toggle("closed");
+  historyChevron.classList.toggle("open");
+  historyHeader.classList.toggle("closed", isClosed);
+});
 
 // ======================
 // MODAL DE PERFIL
@@ -57,6 +60,8 @@ modalOverlay.addEventListener("click", (e) => {
 // ======================
 
 const chatInput = document.getElementById("chatInput");
+const sendBtn = document.getElementById("sendBtn");
+const newChatBtn = document.getElementById("newChatBtn");
 const messagesContainer = document.getElementById("messages");
 
 const replies = [
@@ -93,11 +98,9 @@ function sendMsg() {
 
 function addMessage(text, side) {
   const div = document.createElement("div");
-  div.className = `msg ${side}`;
-
+  div.className = "msg " + side;
   const p = document.createElement("p");
   p.textContent = text;
-
   div.appendChild(p);
   messagesContainer.appendChild(div);
   messagesContainer.scrollTop = messagesContainer.scrollHeight;
@@ -106,17 +109,10 @@ function addMessage(text, side) {
 function addTyping() {
   const div = document.createElement("div");
   div.className = "msg bot";
-
   const id = "typing-" + Date.now();
   div.id = id;
-  div.innerHTML = `
-    <div class="typing-bubble">
-      <span class="typing-dot"></span>
-      <span class="typing-dot"></span>
-      <span class="typing-dot"></span>
-    </div>
-  `;
-
+  div.innerHTML =
+    '<div class="typing-bubble"><span class="typing-dot"></span><span class="typing-dot"></span><span class="typing-dot"></span></div>';
   messagesContainer.appendChild(div);
   messagesContainer.scrollTop = messagesContainer.scrollHeight;
   return id;
@@ -127,10 +123,13 @@ function removeTyping(id) {
   if (el) el.remove();
 }
 
-function resetChat() {
-  messagesContainer.innerHTML = `
-    <div class="msg bot">
-      <p>Novo chat iniciado! O que vamos estudar hoje?</p>
-    </div>
-  `;
-}
+newChatBtn.addEventListener("click", () => {
+  messagesContainer.innerHTML =
+    '<div class="msg bot"><p>Novo chat iniciado! O que vamos estudar hoje?</p></div>';
+});
+
+sendBtn.addEventListener("click", sendMsg);
+
+chatInput.addEventListener("keydown", (e) => {
+  if (e.key === "Enter") sendMsg();
+});
