@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Login — Lumina</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="js/tailwind-config.js"></script>
+  <style> body { font-family: 'Inter', sans-serif; } </style>
+</head>
+<body class="bg-background text-white min-h-screen flex flex-col">
+
+  <div class="px-6 py-4 text-xs uppercase tracking-widest text-muted-fg">
+    <a href="index.html">login / cadastro</a>
+  </div>
+
+  <div class="flex-1 flex items-center justify-center p-6">
+    <div class="w-full max-w-md rounded-3xl border border-border bg-surface p-8">
+      <div class="flex items-center gap-2.5">
+        <div class="flex h-9 w-9 items-center justify-center rounded-lg bg-primary">
+          <svg class="h-4 w-4" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 3l2 5 5 2-5 2-2 5-2-5-5-2 5-2z" /></svg>
+        </div>
+        <span class="font-semibold text-lg">Lumina</span>
+      </div>
+
+      <h1 id="title" class="mt-6 text-2xl font-bold">Bem-vindo de volta</h1>
+      <p id="subtitle" class="mt-1 text-sm text-muted-fg">Entre na sua conta para continuar</p>
+
+      <div class="mt-6 grid grid-cols-2 gap-1 rounded-xl bg-muted p-1">
+        <button id="tab-login" type="button" class="rounded-lg py-2 text-sm font-medium transition bg-surface-2 text-white">entrar</button>
+        <button id="tab-register" type="button" class="rounded-lg py-2 text-sm font-medium transition text-muted-fg">cadastrar</button>
+      </div>
+
+      <form id="form" class="mt-6 space-y-4">
+        <label id="field-name" class="block hidden">
+          <span class="text-xs text-muted-fg">nome</span>
+          <input name="name" type="text" placeholder="Seu nome"
+            class="mt-1.5 w-full rounded-xl border border-border bg-muted px-4 py-2.5 text-sm placeholder:text-muted-fg focus:outline-none focus:border-primary" />
+        </label>
+        <label class="block">
+          <span class="text-xs text-muted-fg">email</span>
+          <input name="email" type="email" required placeholder="seu@email.com"
+            class="mt-1.5 w-full rounded-xl border border-border bg-muted px-4 py-2.5 text-sm placeholder:text-muted-fg focus:outline-none focus:border-primary" />
+        </label>
+        <label class="block">
+          <span class="text-xs text-muted-fg">senha</span>
+          <input name="password" type="password" required placeholder="••••••••"
+            class="mt-1.5 w-full rounded-xl border border-border bg-muted px-4 py-2.5 text-sm placeholder:text-muted-fg focus:outline-none focus:border-primary" />
+        </label>
+
+        <div id="error" class="hidden rounded-lg border border-destructive/40 bg-destructive/10 px-3 py-2 text-sm text-destructive"></div>
+
+        <button id="submit" type="submit"
+          class="w-full rounded-xl bg-primary py-3 text-sm font-medium text-white shadow-glow hover:bg-primary-hover transition disabled:opacity-50">
+          entrar
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <script src="js/api.js"></script>
+  <script>
+    redirectIfAuth();
+
+    let mode = "login";
+    const tabLogin = document.getElementById("tab-login");
+    const tabRegister = document.getElementById("tab-register");
+    const fieldName = document.getElementById("field-name");
+    const title = document.getElementById("title");
+    const subtitle = document.getElementById("subtitle");
+    const submit = document.getElementById("submit");
+    const form = document.getElementById("form");
+    const errorBox = document.getElementById("error");
+
+    function setMode(m) {
+      mode = m;
+      const isLogin = m === "login";
+      tabLogin.className = "rounded-lg py-2 text-sm font-medium transition " + (isLogin ? "bg-surface-2 text-white" : "text-muted-fg");
+      tabRegister.className = "rounded-lg py-2 text-sm font-medium transition " + (!isLogin ? "bg-surface-2 text-white" : "text-muted-fg");
+      fieldName.classList.toggle("hidden", isLogin);
+      fieldName.querySelector("input").required = !isLogin;
+      title.textContent = isLogin ? "Bem-vindo de volta" : "Crie sua conta";
+      subtitle.textContent = isLogin ? "Entre na sua conta para continuar" : "Comece a estudar com IA agora";
+      submit.textContent = isLogin ? "entrar" : "cadastrar";
+      errorBox.classList.add("hidden");
+    }
+    tabLogin.onclick = () => setMode("login");
+    tabRegister.onclick = () => setMode("register");
+
+    form.addEventListener("submit", async (e) => {
+      e.preventDefault();
+      errorBox.classList.add("hidden");
+      submit.disabled = true;
+      submit.textContent = "...";
+      const data = Object.fromEntries(new FormData(form));
+      try {
+        if (mode === "login") {
+          const r = await authApi.login(data.email, data.password);
+          setToken(r.token);
+        } else {
+          await authApi.register(data.name, data.email, data.password);
+          const r = await authApi.login(data.email, data.password);
+          setToken(r.token);
+        }
+        window.location.href = "app.html";
+      } catch (err) {
+        errorBox.textContent = err.message;
+        errorBox.classList.remove("hidden");
+        submit.disabled = false;
+        submit.textContent = mode === "login" ? "entrar" : "cadastrar";
+      }
+    });
+  </script>
+</body>
+</html>

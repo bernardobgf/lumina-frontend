@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Lumina — Estude mais inteligente</title>
+  <meta name="description" content="IA para vestibulandos: chat com IA, exercícios gerados e acompanhamento de progresso." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="js/tailwind-config.js"></script>
+  <style>
+    body { font-family: 'Inter', sans-serif; }
+    .gradient-text {
+      background: linear-gradient(135deg, #a78bfa, #7c5cff);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+  </style>
+</head>
+<body class="bg-background text-white min-h-screen">
+
+  <!-- Nav -->
+  <header class="sticky top-4 z-50 mx-auto max-w-5xl px-4">
+    <nav class="flex items-center justify-between rounded-full border border-border bg-surface/80 backdrop-blur px-5 py-2.5">
+      <a href="index.html" class="flex items-center gap-2">
+        <div class="flex h-8 w-8 items-center justify-center rounded-lg bg-primary">
+          <svg class="h-4 w-4 text-white" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M12 3l2 5 5 2-5 2-2 5-2-5-5-2 5-2z" />
+          </svg>
+        </div>
+        <span class="font-semibold">Lumina</span>
+      </a>
+      <div class="hidden md:flex items-center gap-8 text-sm text-muted-fg">
+        <a href="#inicio" class="hover:text-white transition">início</a>
+        <a href="#funcionalidades" class="hover:text-white transition">funcionalidades</a>
+        <a href="#depoimentos" class="hover:text-white transition">depoimentos</a>
+      </div>
+      <a href="auth.html" class="rounded-full bg-primary px-4 py-1.5 text-sm font-medium text-white hover:bg-primary-hover transition">
+        entrar / registrar
+      </a>
+    </nav>
+  </header>
+
+  <!-- Hero -->
+  <section id="inicio" class="mx-auto max-w-5xl px-4 pt-24 pb-16 text-center">
+    <div class="inline-flex items-center gap-2 rounded-full border border-primary/30 bg-primary/10 px-4 py-1.5 text-sm text-primary">
+      <svg class="h-3.5 w-3.5" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M12 3l2 5 5 2-5 2-2 5-2-5-5-2 5-2z" />
+      </svg>
+      IA para o vestibular
+    </div>
+    <h1 class="mt-8 text-5xl md:text-6xl font-bold tracking-tight leading-[1.05]">
+      Estude mais inteligente,<br />
+      passe <span class="gradient-text">mais rápido</span>
+    </h1>
+    <p class="mt-6 text-lg text-muted-fg max-w-xl mx-auto">
+      A Lumina usa inteligência artificial para personalizar seu estudo e te preparar para o vestibular do jeito certo.
+    </p>
+    <div class="mt-10 flex flex-wrap justify-center gap-3">
+      <a href="auth.html" class="rounded-full bg-primary px-7 py-3 text-sm font-medium text-white shadow-glow hover:bg-primary-hover transition">
+        começar agora
+      </a>
+      <a href="#funcionalidades" class="rounded-full border border-border bg-surface px-7 py-3 text-sm font-medium hover:bg-surface-2 transition">
+        ver funcionalidades
+      </a>
+    </div>
+  </section>
+
+  <!-- Features -->
+  <section id="funcionalidades" class="mx-auto max-w-5xl px-4 pb-24">
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+      <div class="rounded-2xl border border-border bg-surface p-6">
+        <div class="flex h-10 w-10 items-center justify-center rounded-xl bg-primary/15 text-primary">
+          <svg class="h-5 w-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.86 9.86 0 01-4-.8L3 20l1.3-3.7A8.96 8.96 0 013 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" /></svg>
+        </div>
+        <h3 class="mt-5 font-semibold">Chat com IA</h3>
+        <p class="mt-2 text-sm text-muted-fg leading-relaxed">Tire dúvidas sobre qualquer matéria do vestibular em tempo real.</p>
+      </div>
+      <div class="rounded-2xl border border-border bg-surface p-6">
+        <div class="flex h-10 w-10 items-center justify-center rounded-xl bg-primary/15 text-primary">
+          <svg class="h-5 w-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" /></svg>
+        </div>
+        <h3 class="mt-5 font-semibold">Exercícios gerados</h3>
+        <p class="mt-2 text-sm text-muted-fg leading-relaxed">A IA cria questões personalizadas com base no que você precisa revisar.</p>
+      </div>
+      <div class="rounded-2xl border border-border bg-surface p-6">
+        <div class="flex h-10 w-10 items-center justify-center rounded-xl bg-primary/15 text-primary">
+          <svg class="h-5 w-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M3 3v18h18M7 14l4-4 4 4 6-6" /></svg>
+        </div>
+        <h3 class="mt-5 font-semibold">Acompanhe seu progresso</h3>
+        <p class="mt-2 text-sm text-muted-fg leading-relaxed">Veja sua evolução por matéria e identifique onde melhorar.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Depoimentos -->
+  <section id="depoimentos" class="mx-auto max-w-5xl px-4 pb-24">
+    <h2 class="text-3xl font-bold text-center">O que os estudantes dizem</h2>
+    <div class="mt-10 grid grid-cols-1 md:grid-cols-2 gap-4">
+      <div class="rounded-2xl border border-border bg-surface p-6">
+        <p class="text-sm leading-relaxed">"A Lumina mudou meu jeito de estudar. Os exercícios gerados sempre acertam meu ponto fraco."</p>
+        <p class="mt-4 text-sm text-muted-fg">— Marina S.</p>
+      </div>
+      <div class="rounded-2xl border border-border bg-surface p-6">
+        <p class="text-sm leading-relaxed">"Consegui revisar matérias inteiras conversando com a IA. Muito mais rápido que livro."</p>
+        <p class="mt-4 text-sm text-muted-fg">— Pedro H.</p>
+      </div>
+    </div>
+  </section>
+
+  <footer class="border-t border-border py-8 text-center text-xs text-muted-fg">
+    Lumina © 2026 — feito para vestibulandos brasileiros
+  </footer>
+
+</body>
+</html>
