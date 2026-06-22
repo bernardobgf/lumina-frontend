@@ -1,4 +1,4 @@
-const API_BASE = "http://localhost:3000";
+const API_BASE = "https://lumina-backend-pqy3.onrender.com";
 const TOKEN_KEY = "lumina_token";
 
 const getToken = () => localStorage.getItem(TOKEN_KEY);
