@@ -69,3 +69,6 @@ automaticamente no header `Authorization: Bearer ...`.
 - TailwindCSS v3 (CDN — não precisa build)
 - JavaScript ES6+ (sem framework, sem build)
 - Fonte: Inter (Google Fonts)
+
+## Link do deploy
+https://lumina-frontend-sand.vercel.app/
