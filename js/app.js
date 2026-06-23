@@ -339,5 +339,9 @@ document.getElementById("btn-logout").onclick = async () => {
 };
 
 // ===== Init =====
-loadChats();
-loadExercises();
+async function init() {
+  await loadChats();
+  await loadExercises();
+}
+
+init();
