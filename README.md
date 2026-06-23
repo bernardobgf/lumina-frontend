@@ -72,3 +72,6 @@ automaticamente no header `Authorization: Bearer ...`.
 
 ## Link do deploy
 https://lumina-frontend-sand.vercel.app/
+
+## Repositório da API com documentação de cada rota
+https://github.com/bernardobgf/lumina-backend
